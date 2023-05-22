@@ -12,6 +12,8 @@ public class Enemy1 : MonoBehaviour
     public float grado;
     public int lives = 1;
     public Slider vidaBar;
+    public GameObject drop;
+    public bool dropOn;
 
     private bool live = true;
     public GameObject target;
@@ -117,6 +119,10 @@ public class Enemy1 : MonoBehaviour
             vidaBar.value = lives;
             if (lives <= 0)
             {
+                GameObject TemporalSkill;
+                Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+                if(dropOn)
+                    TemporalSkill = Instantiate(drop, position, transform.rotation);
                 live = false;
                 ani.SetBool("dead", true);
                 vidaBar.gameObject.SetActive(false);
